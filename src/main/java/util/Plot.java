@@ -104,6 +104,7 @@ public class Plot {
 
                     for (int i = 0; i < size; i++) {
                         renderer.setSeriesPaint(i, colorMap[i]);
+                        renderer.setSeriesStroke(i, new BasicStroke(2.0f));
                         renderer.setSeriesShapesVisible(i, false);
                     }
 
