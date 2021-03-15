@@ -3,6 +3,7 @@ package util;
 import java.security.InvalidParameterException;
 import java.util.Arrays;
 
+
 public class DSolver {
 
     private final String[] methods = new String[]{"RK4"};
@@ -33,12 +34,7 @@ public class DSolver {
     }
 
     public Double[][] solve(Expression[] f, Double[] x0) {
-        switch (method) {
-            case "RK4":
-                return Numeric.RK4(f, x0, t0, tLim, delta).toArray(Double[][]::new);
-            default:
-                return Numeric.RK4(f, x0, t0, tLim, delta).toArray(Double[][]::new);
-        }
+        return Numeric.RK4(f, x0, t0, tLim, delta).toArray(Double[][]::new);
     }
 
 
