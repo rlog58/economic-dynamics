@@ -54,7 +54,22 @@ public class Plot {
             XYSeries series = new XYSeries(label);
             Double num = 0.0;
             for (int i = 0; i < data.length; i++) {
-                series.add(num++, data[i]);
+                series.add(num, data[i]);
+                num += 1.0;
+            }
+            seriesCollection.addSeries(series);
+            size++;
+        } else {
+            throw new RuntimeException("Only 5 charts are supported");
+        }
+    }
+    public void addPlotX(Double[] data, String label, Double step) {
+        if (size < 5) {
+            XYSeries series = new XYSeries(label);
+            Double num = 0.0;
+            for (int i = 0; i < data.length; i++) {
+                series.add(num, data[i]);
+                num += step;
             }
             seriesCollection.addSeries(series);
             size++;

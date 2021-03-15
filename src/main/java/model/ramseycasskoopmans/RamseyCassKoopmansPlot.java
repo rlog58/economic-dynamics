@@ -1,5 +1,7 @@
 package model.ramseycasskoopmans;
 
+import util.DSolver;
+import util.Model;
 import util.Plot;
 
 import java.util.LinkedList;
@@ -15,21 +17,24 @@ public class RamseyCassKoopmansPlot {
                 true,
                 true);
 
-        RamseyCassKoopmansModel model = new RamseyCassKoopmansModel(0.01, 0.02, 0.04, 0.3, 0.5);
+        Model model = new RamseyCassKoopmansModel(0.01, 0.02, 0.04, 0.3, 0.5);
 
-        LinkedList<Double[]> data = RK4(model.getEqSystem(), new Double[]{100.0, 5.8}, 0.0, 100.0, 0.01, 0.01);
-        plot.addPlotXY(data.stream().toArray(Double[][]::new), "(k0 = 100; c0 = 5.8)");
+        DSolver dSolver = new DSolver(0.0, 100.0, 0.0);
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.85}, 0.0, 100.0, 0.01, 0.01);
+        Double[][] data = dSolver.solve(model.getEqSystem(), new Double[]{100.0, 5.8});
+
+        plot.addPlotXY(data, "(k0 = 100; c0 = 5.8)");
+
+        data = dSolver.solve(model.getEqSystem(), new Double[]{100.0, 5.85});
         plot.addPlotXY(data.stream().toArray(Double[][]::new), "(k0 = 100; c0 = 5.85)");
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.9}, 0.0, 100.0, 0.01, 0.01);
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.9}, 0.0, 100.0, 0.01);
         plot.addPlotXY(data.stream().toArray(Double[][]::new), "(k0 = 100; c0 = 5.9)");
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.95}, 0.0, 100.0, 0.01, 0.01);
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.95}, 0.0, 100.0, 0.01);
         plot.addPlotXY(data.stream().toArray(Double[][]::new), "(k0 = 100; c0 = 5.95)");
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 6.0}, 0.0, 100.0, 0.01, 0.01);
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 6.0}, 0.0, 100.0, 0.01);
         plot.addPlotXY(data.stream().toArray(Double[][]::new), "(k0 = 100; c0 = 6.0)");
 
         plot.show();
@@ -44,19 +49,19 @@ public class RamseyCassKoopmansPlot {
 
         RamseyCassKoopmansModel model = new RamseyCassKoopmansModel(0.01, 0.02, 0.04, 0.3, 0.5);
 
-        LinkedList<Double[]> data = RK4(model.getEqSystem(), new Double[]{100.0, 5.8}, 0.0, 100.0, 0.01, 0.01);
+        LinkedList<Double[]> data = RK4(model.getEqSystem(), new Double[]{100.0, 5.8}, 0.0, 100.0, 0.01);
         plot.addPlotX(data.stream().map(x -> x[0]).toArray(Double[]::new), "(k0 = 100; c0 = 5.8)");
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.85}, 0.0, 100.0, 0.01, 0.01);
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.85}, 0.0, 100.0, 0.01);
         plot.addPlotX(data.stream().map(x -> x[0]).toArray(Double[]::new), "(k0 = 100; c0 = 5.85)");
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.9}, 0.0, 100.0, 0.01, 0.01);
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.9}, 0.0, 100.0, 0.01);
         plot.addPlotX(data.stream().map(x -> x[0]).toArray(Double[]::new), "(k0 = 100; c0 = 5.9)");
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.95}, 0.0, 100.0, 0.01, 0.01);
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.95}, 0.0, 100.0, 0.01);
         plot.addPlotX(data.stream().map(x -> x[0]).toArray(Double[]::new), "(k0 = 100; c0 = 5.95)");
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 6.0}, 0.0, 100.0, 0.01, 0.01);
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 6.0}, 0.0, 100.0, 0.01);
         plot.addPlotX(data.stream().map(x -> x[0]).toArray(Double[]::new), "(k0 = 100; c0 = 6.0)");
 
         plot.show();
@@ -69,22 +74,26 @@ public class RamseyCassKoopmansPlot {
                 true,
                 true);
 
+        Double t0 = 0.0;
+        Double tLim = 1000.0;
+        Double delta = 0.01;
+
         RamseyCassKoopmansModel model = new RamseyCassKoopmansModel(0.01, 0.02, 0.04, 0.3, 0.5);
 
-        LinkedList<Double[]> data = RK4(model.getEqSystem(), new Double[]{100.0, 5.8}, 0.0, 1000.0, 0.01, 0.01);
-        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 5.8)");
+        LinkedList<Double[]> data = RK4(model.getEqSystem(), new Double[]{100.0, 5.8}, 0.0, 1000.0, 0.01);
+        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 5.8)",0.01);
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.85}, 0.0, 1000.0, 0.01, 0.01);
-        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 5.85)");
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.85}, 0.0, 1000.0,  0.01);
+        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 5.85)",0.01);
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.9}, 0.0, 1000.0, 0.01, 0.01);
-        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 5.9)");
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.9}, 0.0, 1000.0, 0.01);
+        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 5.9)",0.01);
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.95}, 0.0, 1000.0, 0.01, 0.01);
-        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 5.95)");
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 5.95}, 0.0, 1000.0, 0.01);
+        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 5.95)",0.01);
 
-        data = RK4(model.getEqSystem(), new Double[]{100.0, 6.0}, 0.0, 1000.0, 0.01, 0.01);
-        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 6.0)");
+        data = RK4(model.getEqSystem(), new Double[]{100.0, 6.0}, 0.0, 1000.0,  0.01);
+        plot.addPlotX(data.stream().map(x -> x[1]).toArray(Double[]::new), "(k0 = 100; c0 = 6.0)",0.01);
 
         plot.show();
     }
