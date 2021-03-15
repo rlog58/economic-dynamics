@@ -2,7 +2,7 @@ package util;
 
 import java.util.LinkedList;
 
-public final class Numeric {
+final class Numeric {
 
     private Numeric() {}
 
