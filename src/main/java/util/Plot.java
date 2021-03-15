@@ -54,7 +54,7 @@ public class Plot {
             XYSeries series = new XYSeries(label);
             Double num = 0.0;
             for (int i = 0; i < data.length; i++) {
-                series.add(num++, data[0]);
+                series.add(num++, data[i]);
             }
             seriesCollection.addSeries(series);
             size++;
