@@ -31,11 +31,11 @@ public final class Numeric {
 
     }
 
-    public static LinkedList<Double[]> RK4(Expression[] f, Double[] x0, Double t0, Double tLim, Double tDelta, Double delta) {
+    public static LinkedList<Double[]> RK4(Expression[] f, Double[] x0, Double t0, Double tLim, Double delta) {
         LinkedList<Double[]> points = new LinkedList<>();
         points.add(x0);
 
-        for (int i = 1; i < (int) ((tLim - t0) / tDelta) + 1; i++) {
+        for (int i = 1; i < (int) ((tLim - t0) / delta) + 1; i++) {
             points.add(RK4Step(f, points.getLast(), delta));
         }
 
