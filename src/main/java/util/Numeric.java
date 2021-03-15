@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 public final class Numeric {
 
+    private Numeric() {}
+
     private static Double[] RK4Step(Expression[] f, Double[] x, Double delta) {
         int n = f.length;
         int m = x.length;

@@ -2,7 +2,7 @@ package util;
 
 public abstract class Model {
     protected Expression[] eqSystem;
-    protected Expression[] resSystem;
+    protected Expression[] dSystem;
 
     public void setEqSystem(Expression[] eqSystem) {
         this.eqSystem = eqSystem;
@@ -12,11 +12,11 @@ public abstract class Model {
         return eqSystem;
     }
 
-    public void setResSystem(Expression[] resSystem) {
-        this.resSystem = resSystem;
+    public void setDSystem(Expression[] dSystem) {
+        this.dSystem = dSystem;
     }
 
-    public Expression[] getResSystem() {
-        return resSystem;
+    public Expression[] getDSystem() {
+        return dSystem;
     }
 }
