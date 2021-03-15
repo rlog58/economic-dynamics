@@ -1,13 +1,7 @@
 package model.korotaev;
 
 import util.DSolver;
-import util.Expression;
-import util.Plot;
-
-import java.util.Arrays;
-import java.util.LinkedList;
-
-import static util.Numeric.RK4;
+import util.graphics.Plot;
 
 
 public class KorotaevPlot {

@@ -1,7 +1,7 @@
 package model.solowswan;
 
 import util.DSolver;
-import util.Plot;
+import util.graphics.Plot;
 
 public class SolowSwanHumanCapitalPlot {
     public static void plot1() {

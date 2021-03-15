@@ -1,7 +1,7 @@
 package model.ramseycasskoopmans;
 
 import util.DSolver;
-import util.Plot;
+import util.graphics.Plot;
 
 import java.util.Arrays;
 
