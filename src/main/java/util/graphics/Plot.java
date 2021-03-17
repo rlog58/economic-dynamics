@@ -65,10 +65,10 @@ public class Plot {
     }
     public void addPlotX(Double[] data, String label, Double step) {
         if (size < 5) {
-            XYSeries series = new XYSeries(label);
+            XYSeries series = new XYSeries(label,false);
             Double num = 0.0;
-            for (int i = 0; i < data.length; i++) {
-                series.add(num, data[i]);
+            for (Double datum : data) {
+                series.add(num, datum);
                 num += step;
             }
             seriesCollection.addSeries(series);
@@ -80,9 +80,9 @@ public class Plot {
 
     public void addPlotXY(Double[][] data, String label) {
         if (size < 5) {
-            XYSeries series = new XYSeries(label);
-            for (Double[] elem : data) {
-                series.add(elem[0], elem[1]);
+            XYSeries series = new XYSeries(label,false);
+            for (Double[] datum : data) {
+                series.add(datum[0], datum[1]);
             }
             seriesCollection.addSeries(series);
             size++;
