@@ -2,5 +2,5 @@ package util;
 
 @FunctionalInterface
 public interface Expression {
-    Double evaluate(Double[] args);
+    Double evaluate(Double t, Double[] x);
 }
